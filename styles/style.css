@@ -78,8 +78,7 @@
   overflow: hidden;
   aspect-ratio: 1 / 1;
   width: 100%;
-  border-top: 2px solid var(--color-accent);
-  border-bottom: 2px solid var(--color-accent);
+  border-block: 2px solid var(--color-accent);
   mix-blend-mode: hard-light;
 }
 
@@ -120,13 +119,25 @@
 
 .card__label {
   position: absolute;
-  top: 25px;
-  right: 25px;
+  inset: 25px 25px auto auto; /* сверху и справа по 25px */
   font-size: 14px;
   font-family: var(--font-accent, fantasy);
   opacity: 0.5;
   mix-blend-mode: hard-light;
-  -webkit-text-stroke: 1px var(--text-stroke);
+  /* Запасной вариант обводки для браузеров без text-stroke */
+  text-shadow:
+    -1px 0 var(--text-stroke),
+    0 1px var(--text-stroke),
+    1px 0 var(--text-stroke),
+    0 -1px var(--text-stroke);
+}
+
+@supports (text-stroke: 1px var(--text-stroke)) or (-webkit-text-stroke: 1px var(--text-stroke)) {
+  .card__label {
+    -webkit-text-stroke: 1px var(--text-stroke);
+    text-stroke: 1px var(--text-stroke);
+    text-shadow: none;
+  }
 }
 
 .card__text {
