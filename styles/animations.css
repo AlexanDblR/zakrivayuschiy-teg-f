@@ -8,19 +8,15 @@
 ✦ button__text — текст внутри кнопки
 */
 
+/* Все keyframes и стили анимации иконки Like */
+
 @keyframes heart {
-  from {
-    transform: scale(1);
-  }
   to {
     transform: scale(1.25);
   }
 }
 
 @keyframes sparks {
-  from {
-    opacity: 0;
-  }
   to {
     opacity: 1;
   }
@@ -49,39 +45,39 @@
 
 /* Наведение: сердце заливается чёрным */
 .like-icon:hover .core {
-  fill: var(--contour-fill-color);
+  fill: var(--heart-color);
   transition: fill 0.3s linear;
 }
 
 .like-icon:hover .main-body {
-  fill: var(--contour-fill-color);
+  fill: var(--heart-color);
   transition: fill 0.3s linear 0.05s;
 }
 
 /* Нажатие: сердце заливается красным */
 .like-icon:active .core {
-  fill: var(--animation-fill-color);
+  fill: var(--like-color);
   transition: fill 0.3s linear;
 }
 
 .like-icon:active .main-body {
-  fill: var(--animation-fill-color);
+  fill: var(--like-color);
   transition: fill 0.3s linear 0.05s;
 }
 
 /* Лайк поставлен */
 .like-icon.is-liked .contour {
-  fill: var(--animation-fill-color);
+  fill: var(--like-color);
   transition: fill 0.3s linear;
 }
 
 .like-icon.is-liked .core {
-  fill: var(--animation-fill-color);
+  fill: var(--like-color);
   transition: fill 0.3s linear 0.05s;
 }
 
 .like-icon.is-liked .main-body {
-  fill: var(--animation-fill-color);
+  fill: var(--like-color);
   transition: fill 0.3s linear 0.06s;
 }
 

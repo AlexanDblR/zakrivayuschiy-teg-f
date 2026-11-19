@@ -15,9 +15,9 @@
   min-height: 100vh;
   max-width: 1440px;
   margin-inline: auto;
-  font-family: var(--font-main, sans-serif);
-  font-variation-settings: "wght" var(--font-weight-regular);
-  background-image: var(--gradient);
+  font-family: var(--font-base, sans-serif);
+  font-variation-settings: "wght" var(--wght-reg);
+  background-image: var(--bg-image);
   background-attachment: fixed;
   background-size: cover;
 }
@@ -32,8 +32,8 @@
 .button,
 .header__content,
 .card {
-  background-color: var(--color-background);
-  border: 2px solid var(--color-accent);
+  background-color: var(--bg);
+  border: 2px solid var(--accent);
 }
 
 /* ---------- Шапка ---------- */
@@ -41,7 +41,6 @@
 .header__content {
   display: grid;
   place-items: center;
-  align-content: center;
   gap: 20px;
   margin-block: 100px;
   padding: 128px clamp(14px, 8.5vw, 122px);
@@ -49,12 +48,12 @@
 
 .logo__header {
   font-size: clamp(3.0625rem, 1.9087rem + 4.9231vw, 4.0625rem);
-  font-family: var(--font-accent, fantasy);
+  font-family: var(--font-alt, fantasy);
 }
 
 .header__text {
   font-size: clamp(0.875rem, 0.226rem + 2.7692vw, 1.4375rem);
-  font-family: var(--font-accent, fantasy);
+  font-family: var(--font-alt, fantasy);
   text-transform: uppercase;
 }
 
@@ -68,18 +67,17 @@
 .card__title {
   margin: 4.5px 10px;
   font-size: 18px;
-  font-family: var(--font-main, sans-serif);
-  font-variation-settings: "wght" var(--font-weight-bold);
+  font-family: var(--font-base, sans-serif);
+  font-variation-settings: "wght" var(--wght-bold);
 }
 
 .card__image {
-  box-sizing: content-box; /* Нужна была рамка снаружи, чтобы совпало с макетом */
   position: relative;
   overflow: hidden;
   aspect-ratio: 1 / 1;
-  width: 100%;
-  border-block: 2px solid var(--color-accent);
+  border-block: 2px solid var(--accent);
   mix-blend-mode: hard-light;
+  box-sizing: content-box;
 }
 
 .picture__card {
@@ -119,23 +117,22 @@
 
 .card__label {
   position: absolute;
-  inset: 25px 25px auto auto; /* сверху и справа по 25px */
+  inset: 25px 25px auto auto;
   font-size: 14px;
-  font-family: var(--font-accent, fantasy);
+  font-family: var(--font-alt, fantasy);
   opacity: 0.5;
   mix-blend-mode: hard-light;
-  /* Запасной вариант обводки для браузеров без text-stroke */
   text-shadow:
-    -1px 0 var(--text-stroke),
-    0 1px var(--text-stroke),
-    1px 0 var(--text-stroke),
-    0 -1px var(--text-stroke);
+    -1px 0 var(--stroke),
+    0 1px var(--stroke),
+    1px 0 var(--stroke),
+    0 -1px var(--stroke);
 }
 
-@supports (text-stroke: 1px var(--text-stroke)) or (-webkit-text-stroke: 1px var(--text-stroke)) {
+@supports (text-stroke: 1px var(--stroke)) or (-webkit-text-stroke: 1px var(--stroke)) {
   .card__label {
-    -webkit-text-stroke: 1px var(--text-stroke);
-    text-stroke: 1px var(--text-stroke);
+    -webkit-text-stroke: 1px var(--stroke);
+    text-stroke: 1px var(--stroke);
     text-shadow: none;
   }
 }
@@ -159,7 +156,6 @@
 .button {
   position: relative;
   overflow: hidden;
-  padding: 0;
   line-height: 90%;
   cursor: pointer;
   box-shadow: 0 0 0 transparent;
@@ -168,7 +164,7 @@
 
 .button:focus-visible {
   outline: none;
-  box-shadow: 2px 2px 0 var(--color-accent);
+  box-shadow: 2px 2px 0 var(--accent);
 }
 
 /* Чёрная плашка, которая выезжает слева при наведении */
@@ -177,7 +173,7 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background-color: var(--color-accent);
+  background-color: var(--accent);
   transform: translateX(-100%);
   transition: transform 0.5s ease-in-out;
 }
@@ -190,10 +186,10 @@
 .button__text {
   position: relative;
   z-index: 2;
-  font-family: var(--font-accent, fantasy);
+  font-family: var(--font-alt, fantasy);
   font-size: 14px;
   line-height: 90%;
-  color: var(--color-text-button);
+  color: var(--btn-text);
   mix-blend-mode: difference;
 }
 
@@ -209,14 +205,14 @@
   padding: 0;
   border: none;
   outline: 2px solid transparent;
-  outline-offset: -2px; /* Чтобы рамка была внутри заданных размеров */
+  outline-offset: -2px;
   background-color: transparent;
   cursor: pointer;
   transition: outline-color 0.3s ease;
 }
 
 .card__icon-button:focus-visible {
-  outline-color: var(--color-accent);
+  outline-color: var(--accent);
 }
 
 .like-icon {
@@ -237,7 +233,7 @@
 .floppy__icon.main {
   position: relative;
   z-index: 2;
-  fill: var(--color-text-button);
+  fill: var(--btn-text);
   mix-blend-mode: difference;
 }
 
@@ -250,7 +246,7 @@ dialog[open] {
   gap: 20px;
   width: 353px;
   padding: 27px;
-  border: 2px solid var(--color-accent);
+  border: 2px solid var(--accent);
 }
 
 dialog::backdrop {
@@ -263,7 +259,7 @@ dialog::backdrop {
 }
 
 .dialog__text {
-  font-family: var(--font-accent, fantasy);
+  font-family: var(--font-alt, fantasy);
   font-size: 14px;
   line-height: 150%;
   text-transform: uppercase;
@@ -300,7 +296,6 @@ dialog::backdrop {
   .button.memory {
     grid-auto-flow: row;
     justify-items: center;
-    align-content: center;
     padding: 16px 18px;
   }
 
