@@ -194,7 +194,8 @@
 }
 
 .button.card__like-button {
-  padding: 9.5px 35px;
+  width: 130px;
+  padding: 9.5px 0;
 }
 
 .card__icon-button {
